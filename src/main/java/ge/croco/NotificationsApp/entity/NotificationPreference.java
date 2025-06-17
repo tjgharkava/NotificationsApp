@@ -1,9 +1,11 @@
 package ge.croco.NotificationsApp.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
 @Table(name = "notification_preference")
+@Data
 public class NotificationPreference {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
