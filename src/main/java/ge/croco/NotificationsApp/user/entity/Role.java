@@ -1,4 +1,4 @@
-package ge.croco.NotificationsApp.entity;
+package ge.croco.NotificationsApp.user.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

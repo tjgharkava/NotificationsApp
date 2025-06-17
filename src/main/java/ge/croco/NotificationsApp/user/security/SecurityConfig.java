@@ -1,6 +1,6 @@
-package ge.croco.NotificationsApp.security;
+package ge.croco.NotificationsApp.user.security;
 
-import ge.croco.NotificationsApp.service.AppUserDetailsService;
+import ge.croco.NotificationsApp.user.service.AppUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,7 +1,8 @@
-package ge.croco.NotificationsApp.service;
+package ge.croco.NotificationsApp.user.service;
 
-import ge.croco.NotificationsApp.entity.Role;
-import ge.croco.NotificationsApp.repository.RoleRepository;
+
+import ge.croco.NotificationsApp.user.entity.Role;
+import ge.croco.NotificationsApp.user.repository.RoleRepository;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

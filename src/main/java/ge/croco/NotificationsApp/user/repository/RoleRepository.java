@@ -1,6 +1,6 @@
-package ge.croco.NotificationsApp.repository;
+package ge.croco.NotificationsApp.user.repository;
 
-import ge.croco.NotificationsApp.entity.Role;
+import ge.croco.NotificationsApp.user.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

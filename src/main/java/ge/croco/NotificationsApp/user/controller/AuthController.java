@@ -1,8 +1,8 @@
-package ge.croco.NotificationsApp.controller;
+package ge.croco.NotificationsApp.user.controller;
 
 
-import ge.croco.NotificationsApp.entity.AppUser;
-import ge.croco.NotificationsApp.service.AppUserService;
+import ge.croco.NotificationsApp.user.entity.AppUser;
+import ge.croco.NotificationsApp.user.service.AppUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +24,12 @@ public class AuthController {
     }
 
     @PostMapping("/register")
+    public String registerUser(@ModelAttribute AppUser user) {
+        userService.registerUser(user);
+        return "redirect:/login";
+    }
+
+    @PostMapping("/register-admin")
     public String register(@ModelAttribute AppUser user) {
         userService.registerAdmin(user);
         return "redirect:/login";

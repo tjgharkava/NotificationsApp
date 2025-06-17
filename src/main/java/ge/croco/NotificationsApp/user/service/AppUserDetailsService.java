@@ -1,7 +1,8 @@
-package ge.croco.NotificationsApp.service;
+package ge.croco.NotificationsApp.user.service;
 
-import ge.croco.NotificationsApp.entity.AppUser;
-import ge.croco.NotificationsApp.repository.AppUserRepository;
+
+import ge.croco.NotificationsApp.user.entity.AppUser;
+import ge.croco.NotificationsApp.user.repository.AppUserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
