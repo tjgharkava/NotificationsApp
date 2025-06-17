@@ -8,6 +8,8 @@ import ge.croco.NotificationsApp.repository.CustomerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
@@ -31,5 +33,24 @@ public class CustomerServiceImpl implements CustomerService {
         customer.setPhone(request.getPhone());
         Customer saved = customerRepository.save(customer);
         return customerMapper.toResponse(saved);
+    }
+
+    @Override
+    public void deleteCustomer(Long id) {
+        customerRepository.deleteById(id);
+    }
+
+    @Override
+    public List<CustomerResponse> getAllCustomers() {
+        return customerRepository.findAll().stream()
+                .map(customerMapper::toResponse)
+                .toList();
+    }
+
+    @Override
+    public CustomerResponse getCustomerById(Long id) {
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Customer not found"));
+        return customerMapper.toResponse(customer);
     }
 }
