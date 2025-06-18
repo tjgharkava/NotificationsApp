@@ -17,7 +17,20 @@ public class CustomerController {
 
     private final CustomerService customerService;
 
+    @GetMapping("/register")
+    public String showRegisterForm(Model model) {
+        model.addAttribute("customerRequest", new CustomerRequest());
+        return "customers/register";
+    }
+
+    @PostMapping("/register")
+    public String registerCustomer(@ModelAttribute CustomerRequest request) {
+        Long customerId = customerService.addCustomer(request);
+        return "redirect:/customers/" + customerId + "/addresses/new";
+    }
+
     @GetMapping
+    // URL: localhost:8080/customers
     public String getCustomers(Model model) {
         List<CustomerResponse> customers = customerService.getAllCustomers();
         model.addAttribute("customers", customers);
@@ -25,12 +38,14 @@ public class CustomerController {
     }
 
     @GetMapping("/new")
+    // URL: localhost:8080/customers/new
     public String showCreateForm(Model model) {
         model.addAttribute("customerRequest", new CustomerRequest());
         return "customers/create";
     }
 
     @GetMapping("/{id}/edit")
+    // URL: localhost:8080/customers/1/edit
     public String showEditForm(@PathVariable Long id, Model model) {
         CustomerResponse customer = customerService.getCustomerById(id);
         CustomerRequest request = new CustomerRequest();
@@ -44,12 +59,14 @@ public class CustomerController {
     }
 
     @PostMapping
+    // URL: localhost:8080/customers
     public String createCustomer(@ModelAttribute CustomerRequest request) {
         customerService.createCustomer(request);
         return "redirect:/customers";
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/{id}/edit")
+    // URL: http://localhost:8080/customers/1/edit
     public String updateCustomer(@PathVariable Long id, @ModelAttribute CustomerRequest customerRequest) {
         customerService.updateCustomer(id, customerRequest);
         return "redirect:/customers";

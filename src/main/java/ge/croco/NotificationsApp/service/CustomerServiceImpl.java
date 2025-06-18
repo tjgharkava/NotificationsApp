@@ -17,6 +17,16 @@ public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerMapper customerMapper;
 
+    public Long addCustomer(CustomerRequest request) {
+        Customer customer = new Customer();
+        customer.setFullName(request.getFullName());
+        customer.setEmail(request.getEmail());
+        customer.setPhone(request.getPhone());
+
+        customerRepository.save(customer);
+        return customer.getId();
+    }
+
     @Override
     public CustomerResponse createCustomer(CustomerRequest request) {
         Customer customer = customerMapper.toEntity(request);

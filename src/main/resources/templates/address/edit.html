@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Address</title>
+    <link rel="stylesheet" th:href="@{/css/address/edit.css}" />
+</head>
+<body>
+<div class="container">
+    <h2>Edit Address</h2>
+
+    <form th:action="@{|/customers/${customerId}/addresses/${addressId}|}"
+          th:object="${addressRequest}" method="post" class="address-form">
+
+        <label for="type">Type:</label>
+        <select id="type" th:field="*{type}" required>
+            <option value="" disabled>Select type</option>
+            <option value="email" th:selected="${addressRequest.type == 'email'}">Email</option>
+            <option value="sms" th:selected="${addressRequest.type == 'sms'}">SMS</option>
+            <option value="postal" th:selected="${addressRequest.type == 'postal'}">Postal</option>
+        </select>
+
+        <label for="value">Value:</label>
+        <input type="text" id="value" th:field="*{value}" placeholder="Enter address value" required />
+
+        <div class="buttons">
+            <button type="submit" class="btn-submit">Update</button>
+            <a th:href="@{|/customers/${customerId}/addresses|}" class="btn-cancel">Cancel</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

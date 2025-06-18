@@ -4,7 +4,6 @@ import ge.croco.NotificationsApp.DTOs.AddressRequest;
 import ge.croco.NotificationsApp.DTOs.AddressResponse;
 import ge.croco.NotificationsApp.service.AddressService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +18,7 @@ public class AddressContoller {
     public String listAddresses(@PathVariable Long customerId, Model model) {
         model.addAttribute("addresses", addressService.getAddressesByCustomerId(customerId));
         model.addAttribute("customerId", customerId);
-        return "address/list";
+        return "addresses/list";
     }
 
     @GetMapping("/new")
@@ -29,7 +28,7 @@ public class AddressContoller {
         return "address/add";
     }
 
-    @PostMapping("/{addressId}/list")
+    @PostMapping
     public String addAddress(@PathVariable Long customerId, @ModelAttribute AddressRequest addressRequest) {
         addressService.addAddress(customerId, addressRequest);
         return "redirect:/customers/" + customerId + "/addresses";

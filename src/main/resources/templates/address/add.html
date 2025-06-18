@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Address</title>
+    <link rel="stylesheet" th:href="@{/css/address/add.css}" />
+</head>
+<body>
+<div class="container">
+    <h2>Add New Address</h2>
+
+    <form th:action="@{|/customers/${customerId}/addresses|}" th:object="${addressRequest}" method="post" class="address-form">
+        <label for="type">Type:</label>
+        <select id="type" th:field="*{type}" required>
+            <option value="" disabled selected>Select type</option>
+            <option value="email">Email</option>
+            <option value="sms">SMS</option>
+            <option value="postal">Postal</option>
+        </select>
+
+        <label for="value">Value:</label>
+        <input type="text" id="value" th:field="*{value}" placeholder="Enter address value" required />
+
+        <div class="buttons">
+            <button type="submit" class="btn-submit">Save</button>
+            <a th:href="@{|/customers/${customerId}/addresses|}" class="btn-cancel">Cancel</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Customer Addresses</title>
+    <link rel="stylesheet" th:href="@{/css/address/list.css}" />
+</head>
+<body>
+<div class="container">
+    <h2>Addresses for Customer [[${customerId}]]</h2>
+
+    <a th:href="@{|/customers/${customerId}/addresses/new|}" class="btn-add">Add New Address</a>
+
+    <table class="address-table">
+        <thead>
+        <tr>
+            <th>Type</th>
+            <th>Value</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="address : ${addresses}">
+            <td th:text="${address.type}"></td>
+            <td th:text="${address.value}"></td>
+            <td>
+                <a th:href="@{|/customers/${customerId}/addresses/${address.id}/edit|}" class="btn-edit">Edit</a>
+                <form th:action="@{|/customers/${customerId}/addresses/${address.id}/delete|}" method="post" class="inline-form">
+                    <button type="submit" class="btn-delete">Delete</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <a th:href="@{/customers}" class="btn-back">Back to Customers</a>
+</div>
+</body>
+</html>

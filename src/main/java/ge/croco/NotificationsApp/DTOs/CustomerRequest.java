@@ -1,8 +1,8 @@
 package ge.croco.NotificationsApp.DTOs;
 
 import lombok.Data;
-
-import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 public class CustomerRequest {

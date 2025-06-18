@@ -2,6 +2,7 @@ package ge.croco.NotificationsApp.service;
 
 import ge.croco.NotificationsApp.DTOs.AddressRequest;
 import ge.croco.NotificationsApp.DTOs.AddressResponse;
+import ge.croco.NotificationsApp.DTOs.CustomerRequest;
 import ge.croco.NotificationsApp.entity.Address;
 import ge.croco.NotificationsApp.entity.Customer;
 import ge.croco.NotificationsApp.mapper.AddressMapper;
@@ -16,7 +17,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AddressServiceImpl implements AddressService {
     private final AddressRepository addressRepository;
-    private final CustomerService customerService;
     private final AddressMapper addressMapper;
     private final CustomerRepository customerRepository;
 
