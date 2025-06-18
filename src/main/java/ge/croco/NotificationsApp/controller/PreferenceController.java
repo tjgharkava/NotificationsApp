@@ -28,4 +28,18 @@ public class PreferenceController {
         preferenceService.updatePreferences(customerId, preferencesRequest);
         return "redirect:/customers/" + customerId + "/preferences";
     }
+
+    @GetMapping("/{customerId}/preferences/edit")
+    public String showPreferencesForm(@PathVariable Long customerId, Model model) {
+        model.addAttribute("preferencesRequest", new PreferenceRequest()); // or load from DB
+        model.addAttribute("customerId", customerId);
+        return "preferences/edit";
+    }
+
+    @PostMapping("/{customerId}/preferences")
+    public String savePreferences(@PathVariable Long customerId,
+                                  @ModelAttribute PreferenceRequest preferencesRequest) {
+        preferenceService.savePreferences(customerId, preferencesRequest);
+        return "redirect:/customers";
+    }
 }

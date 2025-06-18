@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Notification Preferences</title>
+    <link rel="stylesheet" th:href="@{/css/preferences/edit.css}" />
+</head>
+<body>
+<div class="container">
+    <h2>Notification Preferences</h2>
+
+    <form th:action="@{|/customers/${customerId}/preferences|}" th:object="${preferencesRequest}" method="post">
+        <div class="checkbox-group">
+            <label>
+                <input type="checkbox" th:field="*{emailEnabled}" />
+                Email Notifications
+            </label>
+            <label>
+                <input type="checkbox" th:field="*{smsEnabled}" />
+                SMS Notifications
+            </label>
+            <label>
+                <input type="checkbox" th:field="*{pushEnabled}" />
+                Promotional Messages
+            </label>
+        </div>
+
+        <div class="buttons">
+            <button type="submit" class="btn-submit">Save Preferences</button>
+            <a th:href="@{/customers}" class="btn-cancel">Back</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

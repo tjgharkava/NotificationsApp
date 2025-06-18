@@ -2,11 +2,11 @@ package ge.croco.NotificationsApp.service;
 
 import ge.croco.NotificationsApp.DTOs.PreferenceRequest;
 import ge.croco.NotificationsApp.DTOs.PreferenceResponse;
+import ge.croco.NotificationsApp.entity.Customer;
 import ge.croco.NotificationsApp.entity.NotificationPreference;
 import ge.croco.NotificationsApp.repository.CustomerRepository;
 import ge.croco.NotificationsApp.repository.PreferenceRepository;
 import lombok.RequiredArgsConstructor;
-import org.aspectj.weaver.ast.Not;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -34,7 +34,7 @@ public class PreferenceServiceImpl implements PreferenceService {
     }
 
     @Override
-    public PreferenceResponse updatePreferences(Long customerId, PreferenceRequest preferenceRequest) {
+    public void updatePreferences(Long customerId, PreferenceRequest preferenceRequest) {
         NotificationPreference preference = preferenceRepository.findByCustomerId(customerId)
                 .orElseThrow(() -> new RuntimeException("Customer not found"));
         preference.setEmailEnabled(preferenceRequest.isEmailEnabled());
@@ -42,7 +42,26 @@ public class PreferenceServiceImpl implements PreferenceService {
         preference.setPushEnabled(preferenceRequest.isPushEnabled());
 
         NotificationPreference updatedPreference = preferenceRepository.save(preference);
-        return mapToResponse(updatedPreference);
+        mapToResponse(updatedPreference);
+    }
+
+    @Override
+    public void savePreferences(Long customerId, PreferenceRequest request) {
+        Customer customer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new RuntimeException("Customer not found"));
+
+        NotificationPreference preference = preferenceRepository.findByCustomerId(customerId)
+                .orElseGet(() -> {
+                    NotificationPreference newPref = new NotificationPreference();
+                    newPref.setCustomer(customer);
+                    return newPref;
+                });
+
+        preference.setEmailEnabled(request.isEmailEnabled());
+        preference.setSmsEnabled(request.isSmsEnabled());
+        preference.setPushEnabled(request.isPushEnabled());
+
+        preferenceRepository.save(preference);
     }
 
     private PreferenceResponse mapToResponse(NotificationPreference pref) {
