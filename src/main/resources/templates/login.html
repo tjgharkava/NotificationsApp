@@ -1,10 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Login</title>
     <link rel="stylesheet" th:href="@{/css/login.css}">
 </head>
 <body>
+<nav>
+    <ul>
+        <li><a th:href="@{/dashboard}">Dashboard</a></li>
+
+        <!-- Visible only to users with ROLE_ADMIN -->
+        <li sec:authorize="hasRole('ROLE_ADMIN')">
+            <a th:href="@{/admin/dashboard}">Admin Dashboard</a>
+        </li>
+
+        <!-- Visible only to authenticated users (all logged-in) -->
+        <li sec:authorize="isAuthenticated()">
+            <a th:href="@{/customers}">Customers</a>
+        </li>
+
+        <!-- Visible only to anonymous (not logged-in) users -->
+        <li sec:authorize="isAnonymous()">
+            <a th:href="@{/login}">Login</a>
+        </li>
+
+        <!-- Logout visible only to authenticated users -->
+        <li sec:authorize="isAuthenticated()">
+            <form th:action="@{/logout}" method="post" style="display:inline">
+                <button type="submit" style="background:none;border:none;color:#06c;cursor:pointer;padding:0;">
+                    Logout
+                </button>
+            </form>
+        </li>
+    </ul>
+</nav>
 <h2>Log in</h2>
 <form action="/login" method="post">
     <input type="text" name="username" placeholder="Username" required/>
