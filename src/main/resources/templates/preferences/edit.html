@@ -8,16 +8,21 @@
 <div class="container">
     <h2>Notification Preferences</h2>
 
-    <form th:action="@{|/customers/${customerId}/preferences|}" th:object="${preferencesRequest}" method="post">
+    <form th:action="@{|/customers/${customerId}/preferences|}"
+          th:object="${preferencesRequest}"
+          method="post">
+
         <div class="checkbox-group">
             <label>
                 <input type="checkbox" th:field="*{emailEnabled}" />
                 Email Notifications
             </label>
+
             <label>
                 <input type="checkbox" th:field="*{smsEnabled}" />
                 SMS Notifications
             </label>
+
             <label>
                 <input type="checkbox" th:field="*{pushEnabled}" />
                 Promotional Messages
@@ -26,7 +31,7 @@
 
         <div class="buttons">
             <button type="submit" class="btn-submit">Save Preferences</button>
-            <a th:href="@{/customers}" class="btn-cancel">Back</a>
+            <a th:href="@{/customers}" class="btn-cancel">Cancel</a>
         </div>
     </form>
 </div>
