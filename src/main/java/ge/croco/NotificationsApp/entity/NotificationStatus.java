@@ -1,11 +1,13 @@
 package ge.croco.NotificationsApp.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "notification_status")
+@Data
 public class NotificationStatus {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
