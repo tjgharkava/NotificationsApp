@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f6fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 700px;
+    margin: 100px auto;
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    color: #2f3640;
+    margin-bottom: 30px;
+}
+
+.links a {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 24px;
+    text-decoration: none;
+    color: white;
+    background-color: #44bd32;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.links a:hover {
+    background-color: #4cd137;
+}
